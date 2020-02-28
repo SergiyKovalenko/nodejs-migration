@@ -1,59 +1,66 @@
 const UserModel = require('./model');
 
+/**
+ * @exports
+ * @method findAll
+ * @param {}
+ * @summary get list of all users
+ * @returns Promise<UserModel[]>
+ */
+function findAll() {
+  return UserModel.find({}).exec();
+}
+
+/**
+ * @exports
+ * @method findById
+ * @param {string} id
+ * @summary get a user
+ * @returns {Promise<UserModel>}
+ */
+function findById(id) {
+  return UserModel.findById(id).exec();
+}
+
+/**
+ * @exports
+ * @method create
+ * @param {object} profile
+ * @summary create a new user
+ * @returns {Promise<UserModel>}
+ */
+function create(profile) {
+  return UserModel.create(profile);
+}
+
+/**
+ * Find a user by id and update his profile
+ * @exports
+ * @method updateById
+ * @param {string} _id
+ * @param {object} newProfile
+ * @summary update a user's profile
+ * @returns {Promise<void>}
+ */
+function updateById(_id, newProfile) {
+  return UserModel.updateOne({ _id }, newProfile).exec();
+}
+
+/**
+ * @exports
+ * @method deleteById
+ * @param {string} _id
+ * @summary delete a user from database
+ * @returns {Promise<void>}
+ */
+function deleteById(_id) {
+  return UserModel.deleteOne({ _id }).exec();
+}
+
 module.exports = {
-
-  /**
-     * @exports
-     * @method findAll
-     * @param {}
-     * @summary get list of all users
-     * @returns Promise<UserModel[]>
-  */
-  async findAll() {
-    return UserModel.find({});
-  },
-
-  /**
-     * @exports
-     * @method createUser
-     * @param {}
-     * @summary create user
-     * @returns Promise<UserModel[]>
-  */
-  async createUser(req) {
-    return UserModel.create({ email: req.body.email, name: req.body.fullName });
-  },
-
-  /**
-     * @exports
-     * @method updateUsers
-     * @param {}
-     * @summary update users
-     * @returns Promise<UserModel[]>
-  */
-  async updateUsers(req) {
-    return UserModel.updateMany({ name: req.body.fullName });
-  },
-
-  /**
-     * @exports
-     * @method deleteUser
-     * @param {}
-     * @summary delete user
-     * @returns Promise<UserModel[]>
-  */
-  async deleteUser(req) {
-    return UserModel.deleteOne({ email: req.body.email });
-  },
-
-  /**
-     * @exports
-     * @method findUsers
-     * @param {}
-     * @summary find users
-     * @returns Promise<UserModel[]>
-  */
-  async findUsers(req) {
-    return UserModel.find({ email: req.body.email });
-  },
+  findAll,
+  findById,
+  create,
+  updateById,
+  deleteById,
 };

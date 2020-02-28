@@ -1,5 +1,3 @@
-const server = require('./server');
-
 /**
  * @function
  * @param  {NodeJS.ErrnoException} error
@@ -11,15 +9,15 @@ function onError(error, port) {
     throw error;
   }
 
-  const host = (typeof port === 'string') ? `Pipe ${port}` : `Port ${port}`;
+  const bindPort = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
 
   switch (error.code) {
     case 'EACCES':
-      console.error(`${host} requires elevated privileges`);
+      console.error(`${bindPort} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(`${host} is already in use`);
+      console.error(`${bindPort} is already in use`);
       process.exit(1);
       break;
     default:
@@ -33,17 +31,19 @@ function onError(error, port) {
  */
 function onListening() {
   const addr = this.address();
-  const host = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
-  console.log(`Listening on ${host}`);
+  const bindPort = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
+
+  console.log(`Listening on ${bindPort}`);
 }
 
 /**
  * @function
  * @inner
  * @param {http.Server} Server
+ * @param {number} port
  */
-function bind(Server) {
-  Server.on('error', (error) => this.onError(error, server.get('port')));
+function bind(Server, port) {
+  Server.on('error', (error) => this.onError(error, port));
   Server.on('listening', this.onListening.bind(Server));
 }
 

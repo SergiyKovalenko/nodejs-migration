@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/v1/users/" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="text" name="fullName" placeholder="Full name">
+    <input type="text" name="email" placeholder="E-mail">
+    <input type="submit" value="Add user">
+</form>
+<%- messages('message', locals) %>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>email</th>
+        <th></th>
+        <th>full name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        <% for (let item in allUsers) { %>
+            <tr>
+                <td><%= item %></td>
+                <td><%= allUsers[item].email %></td>
+                <td><form action="/v1/users/<%= allUsers[item]._id %>" method="get"><input type="submit" value="edite user"></form></td>
+                <td><%= allUsers[item].fullName %></td>
+                <td><form action="/v1/users/delete/<%= allUsers[item]._id %>?_method=DELETE" method="post"><input type="hidden" name="_csrf" value="<%= csrfToken %>"><input type="hidden" name="_method" value="DELETE"><input type="submit" value="delete"></form></td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+</body>
+</html>

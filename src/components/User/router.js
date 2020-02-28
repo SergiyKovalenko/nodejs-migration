@@ -1,5 +1,8 @@
 const { Router } = require('express');
+const csrf = require('csurf');
 const UserComponent = require('../User');
+
+const csrfProtection = csrf({ cookie: true });
 
 /**
  * Express router to mount user related functions on.
@@ -16,46 +19,46 @@ const router = Router();
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware.
  */
-router.get('/', UserComponent.findAll);
+router.get('/', csrfProtection, UserComponent.findAll);
 
 /**
- * User creation route.
- * @name /v1/users/create
+ * Route serving a user
+ * @name /v1/users/:id
  * @function
  * @inner
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware.
  */
-router.post('/create', UserComponent.createUser);
+router.get('/:id', csrfProtection, UserComponent.findById);
 
 /**
- * User update route.
- * @name /v1/users/update
+ * Route serving a new user
+ * @name /v1/users
  * @function
  * @inner
  * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @param {callback} middleware - Express middleware
  */
-router.put('/update', UserComponent.updateUsers);
+router.post('/', csrfProtection, UserComponent.create);
 
 /**
- * User delete route.
- * @name /v1/users/delete
+ * Route serving a new user
+ * @name /v1/users
  * @function
  * @inner
  * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @param {callback} middleware - Express middleware
  */
-router.delete('/delete', UserComponent.deleteUser);
+router.put('/update/:id', csrfProtection, UserComponent.updateById);
 
 /**
- * Users search route.
- * @name /v1/users/find
+ * Route serving a new user
+ * @name /v1/users
  * @function
  * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @param {string} path -Express path
+ * @param {callback} middleware - Express middleware
  */
-router.get('/find', UserComponent.findUsers);
+router.delete('/delete/:id', csrfProtection, UserComponent.deleteById);
 
 module.exports = router;
