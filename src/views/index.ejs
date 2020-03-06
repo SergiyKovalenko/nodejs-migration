@@ -7,8 +7,8 @@
 <body>
 <form action="/v1/users/" method="post">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-    <input type="text" name="fullName" placeholder="Full name">
-    <input type="text" name="email" placeholder="E-mail">
+    <input type="text" name="email" placeholder="E-mail" required>
+    <input type="text" name="fullName" placeholder="Full name" required>
     <input type="submit" value="Add user">
 </form>
 <%- messages('message', locals) %>
@@ -26,7 +26,7 @@
         <% for (let item in allUsers) { %>
             <tr>
                 <td><%= item %></td>
-                <td><%= allUsers[item].email %></td>
+                <td class="email"><%= allUsers[item].email %></td>
                 <td><form action="/v1/users/<%= allUsers[item]._id %>" method="get"><input type="submit" value="edite user"></form></td>
                 <td><%= allUsers[item].fullName %></td>
                 <td><form action="/v1/users/delete/<%= allUsers[item]._id %>?_method=DELETE" method="post"><input type="hidden" name="_csrf" value="<%= csrfToken %>"><input type="hidden" name="_method" value="DELETE"><input type="submit" value="delete"></form></td>

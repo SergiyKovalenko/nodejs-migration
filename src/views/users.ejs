@@ -8,7 +8,7 @@
     <form action="/v1/users/update/<%= user._id %>?_method=PUT" method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <input type="hidden" name="_method" value="PUT">
-        <input type="text" name="fullName" value="<%= user.fullName %>">
+        <input type="text" name="fullName" value="<%= user.fullName %>" required>
         <input type="submit" value="update">
     </form>
 </body>
