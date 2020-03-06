@@ -4,8 +4,8 @@
     "main": "./src/server/index.js",
     "scripts": {
         "start": "nodemon src/server/index.js",
-        "puppeteer": "node src/.tmp/puppeteer.js",
-        "screenshot": "node src/.tmp/screenshot.js",
+        "puppeteer": "node src/tmp/puppeteer.js",
+        "screenshot": "node src/tmp/screenshot.js",
         "commit": "git-cz"
     },
     "dependencies": {
