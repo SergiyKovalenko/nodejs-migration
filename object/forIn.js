@@ -10,7 +10,7 @@ ColoredTriangle.prototype = triangle;
 const obj = new ColoredTriangle();
 
 for (const prop in obj) {
-  if (obj.hasOwnProperty(prop)) {
+  if (Object.prototype.hasOwnProperty.call(obj, prop)) {
     console.log(`obj.${obj[prop]} = ${prop}`);
   }
 }

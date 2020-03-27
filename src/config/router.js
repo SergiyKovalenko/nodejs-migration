@@ -2,6 +2,9 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const UserRouter = require('../components/User/router');
+const AuthRouter = require('../components/Auth/router');
+const PassportRouter = require('../components/Passport/router');
+const Authenticated = require('../policies/Auth');
 
 
 module.exports = {
@@ -22,7 +25,27 @@ module.exports = {
          * @param {string} path - Express path
          * @param {callback} middleware - Express middleware.
          */
-    app.use('/v1/users', UserRouter);
+    app.use('/v1/users', Authenticated.isAuth, UserRouter);
+
+    /**
+         * Forwards any requests to the /v2/users URI to AuthRouter.
+         * @name /v2/users
+         * @function
+         * @inner
+         * @param {string} path - Express path
+         * @param {callback} middleware - Express middleware.
+         */
+    app.use('/v2/users', AuthRouter);
+
+    /**
+         * Forwards any requests to the /v1/auth URI to PassportRouter.
+         * @name /v1/auth
+         * @function
+         * @inner
+         * @param {string} path - Express path
+         * @param {callback} middleware - Express middleware.
+         */
+    app.use('/v1/auth', Authenticated.isNotAuth, PassportRouter);
 
     /**
          * @description No results returned mean the object is not found

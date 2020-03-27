@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const messages = require('express-messages');
 const cors = require('cors');
 const helmet = require('helmet');
+const passport = require('passport');
 
 module.exports = {
 /**
@@ -46,6 +47,9 @@ module.exports = {
       res.locals.messages = messages(req, res);
       next();
     });
+    // Passport
+    app.use(passport.initialize());
+    app.use(passport.session());
     // cors
     app.use((req, res, next) => {
       res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS ');

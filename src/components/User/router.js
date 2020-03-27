@@ -61,4 +61,17 @@ router.put('/update/:id', csrfProtection, UserComponent.updateById);
  */
 router.delete('/delete/:id', csrfProtection, UserComponent.deleteById);
 
+/**
+ * Route serving a new user
+ * @name /v1/users
+ * @function
+ * @inner
+ * @param {string} path -Express path
+ * @param {callback} middleware - Express middleware
+ */
+router.delete('/logout', csrfProtection, (req, res) => {
+  req.logout();
+  res.status(200).redirect('/v1/auth/');
+});
+
 module.exports = router;
