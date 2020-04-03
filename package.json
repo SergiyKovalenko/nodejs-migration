@@ -1,55 +1,52 @@
 {
-    "name": "lesson3",
-    "version": "0.0.1",
-    "main": "./src/server/index.js",
-    "scripts": {
-        "start": "nodemon src/server/index.js",
-        "puppeteer": "node src/tmp/puppeteer.js",
-        "screenshot": "node src/tmp/screenshot.js",
-        "commit": "git-cz",
-        "test": "mocha"
-    },
-    "dependencies": {
-        "@hapi/joi": "17.1.0",
-        "bcrypt": "4.0.1",
-        "body-parser": "1.18.2",
-        "chai": "4.2.0",
-        "chai-fs": "2.0.0",
-        "compression": "1.7.1",
-        "connect-flash": "0.1.1",
-        "cookie-parser": "1.4.3",
-        "cors": "2.8.5",
-        "csurf": "1.11.0",
-        "dotenv": "8.2.0",
-        "ejs": "3.0.1",
-        "eslint-config-airbnb": "18.0.1",
-        "express": "4.16.2",
-        "express-messages": "1.0.1",
-        "express-session": "1.17.0",
-        "googleapis": "39.2.0",
-        "helmet": "3.21.2",
-        "jsonwebtoken": "8.5.1",
-        "method-override": "3.0.0",
-        "mongodb": "3.5.4",
-        "mongoose": "5.7.5",
-        "passport": "0.4.1",
-        "passport-local": "1.0.0",
-        "puppeteer": "2.1.1",
-        "supertest": "4.0.2"
-    },
-    "devDependencies": {
-        "cz-conventional-changelog": "3.1.0",
-        "eslint": "6.8.0",
-        "eslint-config-airbnb-base": "14.0.0",
-        "eslint-config-prettier": "6.10.0",
-        "eslint-plugin-import": "2.20.1",
-        "eslint-plugin-node": "11.0.0",
-        "eslint-plugin-prettier": "3.1.2",
-        "mocha": "7.1.1"
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
+  "name": "lesson6",
+  "version": "0.0.1",
+  "main": "./src/server/index.js",
+  "scripts": {
+    "start": "nodemon src/server/index.js",
+    "test": "npx mocha ./__test__ --exit",
+    "commit": "git-cz"
+  },
+  "dependencies": {
+    "@hapi/joi": "17.1.0",
+    "body-parser": "1.18.2",
+    "chai": "4.2.0",
+    "chai-fs": "2.0.0",
+    "compression": "1.7.1",
+    "convert-excel-to-json": "1.6.1",
+    "cookie-parser": "1.4.3",
+    "cors": "2.8.5",
+    "ejs": "3.0.2",
+    "eslint-config-airbnb": "18.0.1",
+    "express": "4.16.2",
+    "helmet": "3.9.0",
+    "mocha": "7.1.0",
+    "mongoose": "5.7.5",
+    "supertest": "4.0.2"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "3.1.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-node": "11.0.0",
+    "eslint-plugin-prettier": "3.1.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "description": "1. Migrate books collection from books.xlsx or books.csv file.     - [migrate-mongo](https://www.npmjs.com/package/migrate-mongo)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergiyKovalenko/nodejs-migration.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergiyKovalenko/nodejs-migration/issues"
+  },
+  "homepage": "https://github.com/SergiyKovalenko/nodejs-migration#readme"
 }
